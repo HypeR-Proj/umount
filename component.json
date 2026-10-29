@@ -1,20 +1,12 @@
 {
+  "SPDX-FileCopyrightText": "2026 roolrz",
+  "SPDX-License-Identifier": "Apache-2.0",
   "version": 1,
   "name": "umount",
   "kind": "application",
   "origin": {
     "repository": "https://github.com/roolrz/HypeR",
     "commit": "8d42d047058a2b58a291803700e86487fb723f7a"
-  },
-  "sources": {
-    "Cargo.toml": "app/umount/Cargo.toml",
-    "component.mk": "app/umount/component.mk",
-    "src/main.rs": "app/umount/src/main.rs"
-  },
-  "SPDX-FileCopyrightText": "2026 roolrz",
-  "SPDX-License-Identifier": "Apache-2.0",
-  "mounts": {
-    "": "app/umount"
   },
   "packages": [
     "hyper-umount-system"
@@ -25,22 +17,5 @@
       "app-test",
       "APP_TEST_PACKAGE=hyper-umount-system"
     ]
-  ],
-  "cargo_context": {
-    "Cargo.toml": {
-      "workspace": null,
-      "membership": "..",
-      "dependency_paths": {
-        "/dependencies/hyper-service": "lib/service"
-      },
-      "inherited_dependencies": {
-        "/dependencies/hyper-rt": {
-          "workspace": true
-        },
-        "/dependencies/hyper-service": {
-          "workspace": true
-        }
-      }
-    }
-  }
+  ]
 }

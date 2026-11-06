@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # umount
 
-Graceful managed-filesystem unmount client.
+Managed-filesystem unmount and explicit failed-provider recovery client.
 
 Sends one target to fs-backend through the `lib-service` filesystem control protocol.
 The manager synchronizes the worker and detaches the mount after its ownership checks.
@@ -23,8 +23,12 @@ umount --help
 
 ## Boundaries
 
-Open files, directory capabilities and nested mounts can return Busy. Forced and lazy
-detach are deliberately unsupported; retry after releasing users of the mount.
+Ordinary unmount returns Busy for open files, directory capabilities or nested
+mounts; retry after releasing those users. `umount --force TARGET` only accepts an
+already failed provider. It discards unsynchronized VFS data, reports CRITICAL,
+and retires the failed worker and its queue before permitting remount. A failed
+retirement leaves the volume unavailable. Healthy providers, the namespace root
+and nested mounts are refused; lazy unmount is not implemented.
 
 ## Build and test
 
